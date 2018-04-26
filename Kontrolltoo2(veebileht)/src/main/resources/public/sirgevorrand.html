@@ -1,0 +1,66 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Sirge võrrand</title>
+	</head>
+	<meta charset="utf-8" />
+	
+		<script
+  src="https://code.jquery.com/jquery-3.3.1.js"
+  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+  crossorigin="anonymous"></script>
+<script language="javascript">
+  function vaartus(a,xMin,xMax,b){
+			let url;
+			if(b == 0 ){ 
+				url = "/Yvaartus1?a="+a+"&g="+xMin+"&h="+xMax; 
+			}else{ 
+				url = "/Yvaartus2?a="+a+"&g="+xMin+"&h="+xMax+"&b="+b;
+			}
+			//url = "/Yvaartus2?a="+a+"&g="+xMin+"&h="+xMax+"&b="+b;
+			$.ajax(
+				{
+					
+					url:url, 
+					method:"GET",
+					dataType:"json",
+					success: function(saabuvTekst){
+					$("#vastus").empty();
+					console.log(saabuvTekst);
+					document.getElementById("vastus").innerHTML=(saabuvTekst);
+					
+					}
+			   }
+          );
+        }
+  /* function väärtus(){
+	
+		app.võrrand(document.getElementById('a').value,document.getElementById('b').value,document.getElementById('xMax').value,document.getElementById('xMin').value);
+		app.Xmassiiv();
+	   
+		let vastus = app.Xmassiiv();
+		
+		document.getElementById('vastus').innerHTML=(vastus);
+	}*/
+	</script>
+	<body >
+		<h1>Sirge võrrand (ax + b)</h1>
+		<FORM id="form1">
+			<b> a </b>
+			<input type="text" size=10 id="a" value = 4 >
+			<br>
+			<b> x max</b>
+			<input type="text" size=10 id="xMax"value = 5 >
+			<br>
+			<b> x min</b>
+			<input type="text" size=10 id="xMin"value = 9 >
+			<br>
+			<b> b </b>
+			<input type="text" size=10 id="b"value = 5 >
+			<br>
+			<input type="button" id="submit" value=Arvuta
+			onClick="vaartus(form1.a.value,form1.xMax.value, form1.xMin.value,form1.b.value)">
+		</FORM>
+		<div id="vastus" ></div>
+	</body>
+</html>
